@@ -10,6 +10,11 @@ Persoonlijke week- en gezondheidsplanner: een kalender, dagtaken, stappen en met
 - **Synchronisatie:** elke week-payload heeft een `_t`-tijdstempel. De nieuwste versie wint, of die nu lokaal staat of in de cloud. Er wordt gesynchroniseerd bij het inloggen en telkens als de app weer in beeld komt.
 - **Inloggen:** e-mail en wachtwoord via Supabase Auth (`signInWithPassword`, `signUp`), met 'Wachtwoord vergeten?' (`resetPasswordForEmail`; de herstellink opent een formulier voor een nieuw wachtwoord). Werkt ook vanaf het iPhone-beginscherm.
 
+## Schermen
+- Onderin vier tabbladen: **Vandaag** (weekstrook, voortgangstegels, plan, gemeten, challenge, medicatie, notitie), **Week** (weektotalen, dagen, notities), **Maand** (kalender met stipjes en maandcijfers) en **Meer** (exporteren, importeren, week wissen, uitloggen).
+- Stappen, eiwit en water bij 'Gemeten' vinken in november 2026 de bijbehorende challenge-doelen automatisch aan of uit.
+- Water wordt opgeslagen als `gi wa` (liter).
+
 ## Keys in de payload (per week, dagindex i = 0 voor maandag t/m 6 voor zondag)
 - `i-j`: taak j van dag i afgevinkt; `di-j`: aangepaste omschrijving van die taak
 - `xi`: extra activiteiten `[{t, v}]`

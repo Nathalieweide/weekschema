@@ -39,8 +39,8 @@ h1{font-size:24px;margin:0;font-weight:700;text-transform:capitalize}
 .day{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:4px 0 16px;overflow:hidden}
 .day h2{font-size:18px;margin:0;padding:14px 16px 8px;font-weight:700}
 .tb{margin-left:8px;font-size:12px;font-weight:700;color:var(--acc);background:var(--accsoft);border-radius:999px;padding:2px 8px}
-label{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
-input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:1px 0 0;border:2px solid var(--acc);border-radius:7px;background:transparent;display:grid;place-content:center}
+label.row{display:flex;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;margin:1px 0 0;border:2px solid var(--acc);border-radius:7px;background:transparent;display:grid;place-content:center}
 input:checked{background:var(--acc)}
 input:checked::after{content:"";width:6px;height:11px;border:solid var(--card);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
 input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
@@ -92,6 +92,83 @@ select{margin-left:auto;font:inherit;background:var(--card);color:var(--ink);bor
 .auth #lx button{width:auto;flex:1;background:none;border-color:var(--line);color:var(--mute);font-weight:500}
 .data{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 [hidden]{display:none!important}
+:root{--goodsoft:#E3F2E9;--goodline:#B9DCC6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--goodsoft:#1F3A33;--goodline:#2F5A4C}}
+:root[data-theme="dark"]{--goodsoft:#1F3A33;--goodline:#2F5A4C}
+main{padding-bottom:110px}
+.hdr{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:4px 0 14px}
+.hdl{display:flex;flex-direction:column;gap:2px;min-width:0}
+.hdr h1,.navt h1{text-transform:none;font-size:26px;letter-spacing:-.3px;margin:0}
+.navt h1{font-size:22px}
+.kick{font-size:13px;color:var(--mute);font-weight:500}
+.badge{flex:none;font-size:12px;font-weight:700;color:var(--acc);background:var(--accsoft);border-radius:999px;padding:4px 10px;border:0}
+button.btnb{padding:8px 12px;min-height:36px}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.sd{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0 7px;min-height:60px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.sd .sw{font-size:11px;font-weight:500;color:var(--mute)}.sd .sn{font-size:16px;font-weight:700}
+.sd.full{background:var(--accsoft)}.sd.tod{border:2px solid var(--acc)}
+.sd.sel{background:var(--acc);border-color:var(--acc);color:var(--card)}.sd.sel .sw{color:var(--card)}.sd.sel .dot{background:var(--card)}
+.dots{display:flex;gap:3px;height:5px}.dot{width:5px;height:5px;border-radius:50%}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}.tiles.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tl{font-size:12px;color:var(--mute);font-weight:500}.tv{font-size:20px;font-weight:700;white-space:nowrap}.to{font-size:12px;color:var(--mute);font-weight:500}
+.bar2{display:block;height:6px;background:var(--accsoft);border-radius:999px;overflow:hidden}
+.bar2 .fill{display:block;height:100%;background:var(--acc);border-radius:999px;transition:width .25s}.fill.good{background:var(--good)}.fill.warm{background:var(--warm)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 12px;overflow:hidden}
+.card.pad{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px}
+.card-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px 8px}
+.card-h h2{font-size:16px;margin:0;font-weight:700}
+.card-r{font-size:12px;color:var(--mute);text-align:right}.card-r.good{color:var(--good);font-weight:700}
+.rt{flex:1;min-width:0;display:flex;flex-direction:column}
+input:checked + .rt .t{color:var(--done);text-decoration:line-through}
+.addb{display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;border:0;border-top:1px solid var(--line);border-radius:0;color:var(--acc);font-weight:500;min-height:46px;text-align:left;background:none}
+.addrow .pri{width:auto}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 16px 16px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mute)}
+.fbox{display:flex;align-items:baseline;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.fbox input{appearance:auto;-webkit-appearance:auto;display:block;width:100%;min-width:0;height:auto;background:none;border:0;color:var(--ink);font:inherit;font-size:17px;font-weight:700;padding:0;margin:0}
+.fbox:focus-within{border-color:var(--acc)}
+.fu{font-size:12px;color:var(--mute);white-space:nowrap}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 16px 10px}
+.ct{display:flex;align-items:center;gap:10px;text-align:left;padding:10px;min-height:54px;border-radius:12px;background:var(--bg);border:1px solid var(--line);color:var(--ink)}
+.ct[aria-pressed="true"]{background:var(--goodsoft);border-color:var(--goodline)}
+.cb{flex:none;width:20px;height:20px;border-radius:6px;border:2px solid var(--done);display:grid;place-content:center;color:var(--card)}
+.ct[aria-pressed="true"] .cb{background:var(--good);border-color:var(--good)}
+.ctt{display:flex;flex-direction:column;min-width:0}.ctt b{font-size:14px;font-weight:500}.ctt small{font-size:11px;color:var(--mute)}
+.small{font-size:12px;color:var(--mute);margin:0}
+#chw{padding:0 16px 14px}
+.mctl{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.med select{margin:0;background:var(--bg)}
+.med input[type=time]{appearance:auto;-webkit-appearance:auto;display:inline-block;width:auto;height:auto;margin:0;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+
+.card .chips{padding:6px 16px 16px}.chip{min-height:40px}
+.nl{display:block;font-size:16px;font-weight:700;cursor:default}
+.card textarea{display:block;width:100%;box-sizing:border-box;min-height:76px;resize:vertical;font:inherit;font-size:15px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px}
+.sync{font-size:12px;color:var(--good);text-align:center;margin:4px 0 8px;min-height:16px}
+.navh{display:flex;align-items:center;gap:8px;margin:4px 0 14px}.navt{flex:1;text-align:center;display:flex;flex-direction:column;gap:2px}
+.arr{width:44px;height:44px;padding:0;display:grid;place-content:center;background:var(--card)}
+.wrow{display:grid;grid-template-columns:96px minmax(0,1fr) 62px;gap:10px;align-items:center;padding:12px 16px;width:100%;border:0;border-top:1px solid var(--line);border-radius:0;background:none;color:var(--ink);text-align:left;min-height:58px}
+.wrow.whead{font-size:11px;color:var(--mute);font-weight:500;border-top:0;min-height:0;padding:4px 16px 6px}
+.wrow.tod{background:var(--accsoft)}
+.wd{display:flex;flex-direction:column;align-items:flex-start;text-align:left}.wn{font-size:15px;font-weight:700;color:var(--ink)}.wdt{font-size:12px;color:var(--mute)}
+.wp{display:flex;flex-direction:column;gap:5px;min-width:0}.wpt{font-size:12px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wc{text-align:right;font-size:14px;font-weight:700;color:var(--mute)}.whead .wc{font-size:11px;font-weight:500}.wc.good{color:var(--good)}
+.note2{padding:10px 16px;border-top:1px solid var(--line)}.note2 p{margin:4px 0 0;font-size:14px;white-space:pre-wrap}
+.pad2{padding:0 16px 14px}.pad3{padding:0 4px;margin-bottom:8px}
+.mwd{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:14px 12px 6px;text-align:center;font-size:11px;color:var(--mute);font-weight:500}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:0 12px}
+.mc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:46px;padding:0;border-radius:10px;background:var(--bg);border:1px solid transparent;color:var(--ink);font-size:14px;font-weight:500}
+.mc.full{background:var(--accsoft)}.mc.tod{border:2px solid var(--acc)}.mc.sel{background:var(--acc);color:var(--card)}.mc.sel .dot{background:var(--card)}
+.mc .dots{height:4px;gap:2px}.mc .dot{width:4px;height:4px}
+.card .legend{padding:10px 16px 14px;margin:0}
+.mstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:0 16px 16px}
+.ms{display:flex;flex-direction:column;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0}.ms b{font-size:20px}.ms span{font-size:11px;color:var(--mute)}
+.mbtns{display:flex;flex-direction:column;gap:8px;padding:0 16px 16px}.mbtns button{width:100%;text-align:left;color:var(--ink);min-height:48px}.mbtns button.warn{color:var(--warm)}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--card);border-top:1px solid var(--line);padding:6px max(6px,calc((100% - 520px)/2)) calc(8px + env(safe-area-inset-bottom,0px));z-index:10}
+.tabs[hidden]{display:none}
+.tabs button{border:0;background:none;border-radius:0;display:flex;flex-direction:column;align-items:center;gap:5px;padding:6px 0;min-height:48px;font-size:12px;font-weight:500;color:var(--mute)}
+.tabs button::before{content:"";display:block;width:28px;height:4px;border-radius:999px;background:transparent}
+.tabs button.on{color:var(--acc);font-weight:700}.tabs button.on::before{background:var(--acc)}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -117,36 +194,15 @@ select{margin-left:auto;font:inherit;background:var(--card);color:var(--ink);bor
 </div>
 </section>
 <main id="app" hidden>
-<div class="nav">
-<button id="prev" type="button" aria-label="Vorige maand">‹</button>
-<div class="ttl"><h1 id="mt"></h1></div>
-<button id="next" type="button" aria-label="Volgende maand">›</button>
-</div>
-<div class="wd"><span>ma</span><span>di</span><span>wo</span><span>do</span><span>vr</span><span>za</span><span>zo</span></div>
-<div id="g" class="cal"></div>
-<div class="legend">
-<span><span class="dot d-run"></span>Hardlopen</span>
-<span><span class="dot d-kp"></span>Kracht of Pilates</span>
-<span><span class="dot d-n"></span>Notitie</span>
-<span><span class="dot d-ch"></span>Challenge gehaald</span>
-</div>
-<div class="jump"><button id="today" type="button" hidden>Naar vandaag</button></div>
-<div class="stp"><div class="stv" id="stv"></div><div class="prog"><div class="bar" id="stb"></div></div></div>
-<div id="day"></div>
-<div class="prog"><div class="bar" id="bar"></div></div>
-<p class="count" id="count"></p>
-<p class="count" id="tot"></p>
-<p class="count" id="chw"></p>
-<p class="tip">Eiwit bij elke maaltijd (ei, yoghurt, kip, vis, peulvruchten). Voel je pijn in je heup? Sla dan een dag over en houd de volgende loop korter. Alles wat je invult blijft bewaard; blader met de pijltjes terug naar eerdere maanden.</p>
-<p class="count" id="sync"></p>
-<button id="reset" type="button">Deze week wissen</button>
-<div class="data">
-<button id="exp" type="button">Exporteer alles</button>
-<button id="imp" type="button">Importeer</button>
+<div id="view"></div>
 <input id="impf" type="file" accept="application/json,.json" hidden>
-<button id="out" type="button">Uitloggen</button>
-</div>
 </main>
+<nav id="tabs" class="tabs" aria-label="Hoofdmenu" hidden>
+<button type="button" data-v="today">Vandaag</button>
+<button type="button" data-v="week">Week</button>
+<button type="button" data-v="month">Maand</button>
+<button type="button" data-v="more">Meer</button>
+</nav>
 <script>
 var plan=[
 ["Maandag",[["Wandelen","15 minuten in je lunchpauze"],["Eten bijhouden","Foto’s of een app"]]],
@@ -199,7 +255,7 @@ function save(){
   var k=KEY,snap=JSON.parse(JSON.stringify(state));
   clearTimeout(wts[k]);
   wts[k]=setTimeout(function(){
-    push(k,snap).then(function(){$("sync").textContent="Bewaard op je account."}).catch(function(){$("sync").textContent="Opslaan op je account is niet gelukt; wel bewaard op dit toestel."});
+    push(k,snap).then(function(){setSync("Bewaard op je account.")}).catch(function(){setSync("Opslaan op je account is niet gelukt; wel bewaard op dit toestel.")});
   },700);
 }
 function stats(st){
@@ -221,195 +277,335 @@ function info(d,cache){
   var hk=parseFloat(st["g"+i+"hk"]);if(hk>0)run=true;
   var xs=st["x"+i];
   if(Array.isArray(xs))xs.forEach(function(e){if(e.v){if(/hardloop/i.test(e.t))run=true;if(/kracht|pilates/i.test(e.t))kp=true}});
-  var chd=false;
-  if(inChal(d)){chd=true;CHD.forEach(function(c){if(!st["c"+i+c[0]])chd=false})}
-  return {full:it.length>0&&done===it.length,run:run,kp:kp,ch:chd,note:!!(st["n"+i]&&String(st["n"+i]).trim())};
+  if(st["c"+i+"kr"])kp=true;
+  var chn=0;CHD.forEach(function(c){if(st["c"+i+c[0]])chn++});
+  var sv=parseFloat(st["g"+i+"st"]);
+  return {full:it.length>0&&done===it.length,run:run,kp:kp,ch:inChal(d)&&chn===CHD.length,chn:chn,
+    note:!!(st["n"+i]&&String(st["n"+i]).trim()),done:done,total:it.length,hk:hk>0?hk:0,st:sv>0?sv:0};
 }
-function drawCal(){
-  $("mt").textContent=MN[shown.m]+" "+shown.y;
-  var first=new Date(shown.y,shown.m,1),off=(first.getDay()+6)%7,n=new Date(shown.y,shown.m+1,0).getDate(),h="",cache={};
-  for(var i=0;i<off;i++)h+="<span></span>";
-  for(var d=1;d<=n;d++){
-    var dt=new Date(shown.y,shown.m,d),x=info(dt,cache),c="cell";
-    if(x.full)c+=" full";
-    if(iso(dt)===iso(today))c+=" today";
-    if(iso(dt)===iso(sel))c+=" sel";
-    var dots=(x.run?'<span class="dot d-run"></span>':"")+(x.kp?'<span class="dot d-kp"></span>':"")+(x.ch?'<span class="dot d-ch"></span>':"")+(x.note?'<span class="dot d-n"></span>':"");
-    h+='<button type="button" class="'+c+'" data-d="'+d+'" aria-label="'+d+" "+MN[shown.m]+'"><span>'+d+'</span><span class="dots">'+dots+'</span></button>';
-  }
-  $("g").innerHTML=h;
-  $("today").hidden=(iso(sel)===iso(today)&&shown.m===today.getMonth()&&shown.y===today.getFullYear());
+var DN=["Maandag","Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag","Zondag"];
+var WD=["ma","di","wo","do","vr","za","zo"];
+var CHL={fa:"Geen fastfood",fr:"Geen frisdrank",al:"Geen alcohol",st:"8.000 stappen",ei:"Eiwit gehaald",sl:"8–9 uur slaap",wa:"Water gedronken"};
+var view="today",syncMsg="";
+function h(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function setSync(t){syncMsg=t;var e=$("sync");if(e)e.textContent=t}
+function addDays(d,n){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()+n);return x}
+function isoWeek(d){var t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));var dn=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-dn);var y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-y)/864e5+1)/7)}
+function short(d){return d.getDate()+" "+MN[d.getMonth()].slice(0,3)}
+function nl1(n){return (Math.round(n*10)/10).toString().replace(".",",")}
+function card(title,right){
+  var s=h("section","card"),hd=h("div","card-h");
+  hd.appendChild(h("h2",null,title));
+  if(right!=null){s._r=h("span","card-r",right);hd.appendChild(s._r)}
+  s.appendChild(hd);return s;
 }
-function summary(){
-  var n=stats(state);
-  $("bar").style.width=(n/TOTAL*100)+"%";
-  var si=dayIdx(sel),sv=parseFloat(state["g"+si+"st"]);if(isNaN(sv))sv=0;
-  $("stv").textContent="Stappen op "+plan[si][0].toLowerCase()+" "+fmt(sel)+": "+Math.round(sv).toLocaleString("nl-NL")+" van 8.000"+(sv>=8000?", doel gehaald":"");
-  $("stb").style.width=Math.min(100,sv/8000*100)+"%";
-  $("count").textContent="Week van "+fmt(mondayOf(sel))+": "+n+" van "+TOTAL+" gedaan";
-  var sum={st:0,hk:0,kc:0,ei:0},cnt={kc:0,ei:0};
-  for(var k in state){
-    var m=/^g\d(st|hk|kc|ei)$/.exec(k);
-    if(!m||state[k]==="")continue;
-    var v=parseFloat(state[k]);if(isNaN(v))continue;
-    sum[m[1]]+=v;if(cnt[m[1]]!==undefined)cnt[m[1]]++;
-  }
-  var parts=["Stappen: "+Math.round(sum.st),"Hardlopen: "+(Math.round(sum.hk*10)/10)+" km"];
-  if(cnt.kc)parts.push("Gem. calorieën: "+Math.round(sum.kc/cnt.kc));
-  if(cnt.ei)parts.push("Gem. eiwit: "+Math.round(sum.ei/cnt.ei)+" g");
-  $("tot").textContent=parts.join(" | ");
-  var kr=0,sn=0;
-  for(var q=0;q<7;q++){if(state["c"+q+"kr"])kr++;if(state["c"+q+"gs"])sn++}
-  $("chw").textContent=inChal(sel)?"Challenge deze week: krachttraining "+kr+" (doel 3 tot 5) | dagen zonder ongezonde snack "+sn:"";
+function bar(p,cls){var o=h("span","bar2"),i=h("span","fill"+(cls?" "+cls:""));i.style.width=Math.max(0,Math.min(100,p||0))+"%";o.appendChild(i);return o}
+function dotsEl(x){var s=h("span","dots");if(x.run)s.appendChild(h("span","dot d-run"));if(x.kp)s.appendChild(h("span","dot d-kp"));if(x.ch)s.appendChild(h("span","dot d-ch"));if(x.note)s.appendChild(h("span","dot d-n"));return s}
+function tile(label,val,of,p,cls){var t=h("div","tile");t.appendChild(h("span","tl",label));var v=h("span","tv",val);v.appendChild(h("span","to",of));t.appendChild(v);t.appendChild(bar(p,cls));return t}
+var SVG_L='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>';
+var SVG_R='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>';
+var SVG_OK='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>';
+var SVG_PLUS='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>';
+function arrowBtn(dir,label,fn){var b=h("button","arr");b.type="button";b.setAttribute("aria-label",label);b.innerHTML=dir<0?SVG_L:SVG_R;b.addEventListener("click",fn);return b}
+function navHead(prevLabel,nextLabel,onPrev,onNext,title,sub){
+  var hd=h("div","navh"),mid=h("div","navt");
+  hd.appendChild(arrowBtn(-1,prevLabel,onPrev));
+  mid.appendChild(h("h1",null,title));if(sub)mid.appendChild(h("span","kick",sub));
+  hd.appendChild(mid);hd.appendChild(arrowBtn(1,nextLabel,onNext));return hd;
 }
-function refresh(){drawCal();summary()}
+function goToday(d){view="today";pick(d);window.scrollTo(0,0)}
+
+/* ---------- Vandaag ---------- */
+function drawStrip(){
+  var s=$("strip");if(!s)return;s.textContent="";
+  var mon=mondayOf(sel),cache={};
+  for(var j=0;j<7;j++)(function(d){
+    var x=info(d,cache),b=h("button","sd");b.type="button";
+    if(x.full)b.classList.add("full");
+    if(iso(d)===iso(today))b.classList.add("tod");
+    if(iso(d)===iso(sel)){b.classList.add("sel");b.setAttribute("aria-current","date")}
+    b.setAttribute("aria-label",DN[dayIdx(d)]+" "+fmt(d));
+    b.appendChild(h("span","sw",WD[dayIdx(d)]));b.appendChild(h("span","sn",String(d.getDate())));b.appendChild(dotsEl(x));
+    b.addEventListener("click",function(){pick(d)});
+    s.appendChild(b);
+  })(addDays(mon,j));
+}
+function drawTiles(){
+  var s=$("tiles");if(!s)return;s.textContent="";
+  var x=info(sel,{}),sv=x.st;
+  s.appendChild(tile("Plan",String(x.done)," / "+x.total,x.total?x.done/x.total*100:0,""));
+  if(inChal(sel))s.appendChild(tile("Challenge",String(x.chn)," / "+CHD.length,x.chn/CHD.length*100,"good"));
+  else{var n=stats(state);s.appendChild(tile("Week",String(n)," / "+TOTAL,n/TOTAL*100,""))}
+  s.appendChild(tile("Stappen",sv>=1000?nl1(sv/1000)+"k":String(Math.round(sv))," / 8k",sv/8000*100,"warm"));
+}
+function chalItems(){
+  var items=CHD.map(function(c){
+    var hint=c[2];
+    if(c[0]==="fr")hint="zero mag";
+    if(c[0]==="st")hint="vult zich via Gemeten";
+    if(c[0]==="ei")hint=Math.round(WEIGHT*1.8)+"–"+Math.round(WEIGHT*2.2)+" g";
+    if(c[0]==="wa")hint=nl1(WEIGHT*35/1000)+" liter";
+    return [c[0],CHL[c[0]]||c[1],hint];
+  });
+  items.push(["kr","Krachttraining","3–5× per week"]);
+  items.push(["gs","Geen snackmoment","1–2× per week mag"]);
+  return items;
+}
+function drawChalGrid(){
+  var g=$("chg");if(!g)return;g.textContent="";
+  var i=dayIdx(sel);
+  chalItems().forEach(function(c){
+    var id="c"+i+c[0],on=!!state[id],b=h("button","ct");b.type="button";
+    b.setAttribute("aria-pressed",on?"true":"false");
+    var bx=h("span","cb");if(on)bx.innerHTML=SVG_OK;b.appendChild(bx);
+    var tx=h("span","ctt");tx.appendChild(h("b",null,c[1]));tx.appendChild(h("small",null,c[2]||(on?"gehaald":"nog niet")));b.appendChild(tx);
+    b.addEventListener("click",function(){state[id]=!state[id];save();drawChalGrid()});
+    g.appendChild(b);
+  });
+  updateCounts();
+}
+function updateCounts(){
+  var x=info(sel,{});
+  var p=$("plc");if(p)p.textContent=x.done+" van "+x.total;
+  var c=$("chc");if(c)c.textContent=x.chn+" van "+CHD.length;
+  var w=$("chw");
+  if(w){var kr=0,sn=0;for(var q=0;q<7;q++){if(state["c"+q+"kr"])kr++;if(state["c"+q+"gs"])sn++}
+    w.textContent="Deze week: kracht "+kr+" van 3–5 · snackvrije dagen "+sn;}
+}
+function autoChal(i,key,v){
+  if(!inChal(sel)||v==="")return;
+  var n=parseFloat(v);if(isNaN(n))return;
+  var lim={st:8000,ei:Math.round(WEIGHT*1.8),wa:Math.round(WEIGHT*35/100)/10}[key];
+  if(lim===undefined)return;
+  var ok=n>=lim;
+  if(!!state["c"+i+key]!==ok){state["c"+i+key]=ok;drawChalGrid()}
+}
 function medRow(i,key,label,pumps){
-  var id="m"+i+key,l=document.createElement("label"),c=document.createElement("input");
+  var id="m"+i+key,l=h("label","row med"),c=h("input");
   c.type="checkbox";c.checked=!!state[id];
-  var sp=document.createElement("span");sp.className="t";sp.textContent=label;
+  var sp=h("span","rt"),ctl=h("span","mctl");sp.appendChild(h("span","t",label));
   l.appendChild(c);l.appendChild(sp);
   if(pumps){
-    var sl=document.createElement("select");sl.setAttribute("aria-label","Aantal pompjes");
-    for(var n=1;n<=4;n++){var o=document.createElement("option");o.value=n;o.textContent=n+(n===1?" pompje":" pompjes");sl.appendChild(o)}
+    var sl=h("select");sl.setAttribute("aria-label","Aantal pompjes");
+    for(var n=1;n<=4;n++){var o=h("option",null,n+(n===1?" pompje":" pompjes"));o.value=n;sl.appendChild(o)}
     sl.value=state[id+"n"]||2;
     sl.addEventListener("change",function(){state[id+"n"]=sl.value;save()});
-    l.appendChild(sl);
+    ctl.appendChild(sl);
   }
-  var tm=document.createElement("input");tm.type="time";tm.setAttribute("aria-label","Tijdstip");
+  var tm=h("input");tm.type="time";tm.setAttribute("aria-label","Tijdstip");
   tm.value=state[id+"t"]||"";
   tm.addEventListener("change",function(){state[id+"t"]=tm.value;if(tm.value){c.checked=true;state[id]=true}save()});
-  l.appendChild(tm);
+  ctl.appendChild(tm);sp.appendChild(ctl);
   c.addEventListener("change",function(){state[id]=c.checked;save()});
   return l;
 }
-function drawDay(){
-  var box=$("day");box.textContent="";
-  var i=dayIdx(sel),day=plan[i];
-  var s=document.createElement("section");s.className="day";
-  var h=document.createElement("h2");h.textContent=day[0]+" "+fmt(sel);s.appendChild(h);
-  if(iso(sel)===iso(today)){var tb=document.createElement("span");tb.className="tb";tb.textContent="Vandaag";h.appendChild(tb)}
+function renderToday(box){
+  var i=dayIdx(sel),day=plan[i],isT=iso(sel)===iso(today);
+  var hd=h("div","hdr"),hl=h("div","hdl");
+  hl.appendChild(h("span","kick","Week "+isoWeek(sel)+" · "+MN[sel.getMonth()]));
+  hl.appendChild(h("h1",null,DN[i]+" "+short(sel)));
+  hd.appendChild(hl);
+  if(isT)hd.appendChild(h("span","badge","Vandaag"));
+  else{var tb=h("button","badge btnb","Naar vandaag");tb.type="button";tb.addEventListener("click",function(){pick(new Date(today.getTime()))});hd.appendChild(tb)}
+  box.appendChild(hd);
+  var strip=h("div","strip");strip.id="strip";box.appendChild(strip);
+  var tiles=h("div","tiles");tiles.id="tiles";box.appendChild(tiles);
+
+  var pc=card(isT?"Plan voor vandaag":"Plan",""),xk="x"+i,list=Array.isArray(state[xk])?state[xk]:[];
+  pc._r.id="plc";
   day[1].forEach(function(it,j){
-    var id=i+"-"+j,l=document.createElement("label"),c=document.createElement("input");
+    var id=i+"-"+j,l=h("label","row"),c=h("input");
     c.type="checkbox";c.checked=!!state[id];
     c.addEventListener("change",function(){state[id]=c.checked;save()});
-    var sp=document.createElement("span"),t=document.createElement("span");
-    t.className="t";t.textContent=it[0];sp.appendChild(t);
-    var di=document.createElement("input");di.type="text";di.className="d-in";di.setAttribute("aria-label","Aanpassing "+it[0]);
-    di.placeholder="Aanpassing of notitie";
+    var sp=h("span","rt");sp.appendChild(h("span","t",it[0]));
+    var di=h("input","d-in");di.type="text";di.setAttribute("aria-label","Aanpassing "+it[0]);di.placeholder="Aanpassing of notitie";
     di.value=(state["d"+id]!==undefined)?state["d"+id]:it[1];
     di.addEventListener("input",function(){state["d"+id]=di.value;save()});
-    sp.appendChild(di);
-    l.appendChild(c);l.appendChild(sp);s.appendChild(l);
+    sp.appendChild(di);l.appendChild(c);l.appendChild(sp);pc.appendChild(l);
   });
-  var xs=document.createElement("div");
-  var xl=document.createElement("div");xs.appendChild(xl);
-  var xr=document.createElement("div");xr.className="addrow";
-  var xi=document.createElement("input");xi.type="text";xi.placeholder="Extra activiteit, bijv. hardlopen 5 km";xi.setAttribute("aria-label","Extra activiteit");
-  var xb=document.createElement("button");xb.type="button";xb.textContent="Toevoegen";
-  var xk="x"+i,list=Array.isArray(state[xk])?state[xk]:[];
+  var xl=h("div");pc.appendChild(xl);
   function drawX(){
     xl.textContent="";
     list.forEach(function(it,j){
-      var l=document.createElement("label"),c=document.createElement("input");
-      c.type="checkbox";c.checked=!!it.v;
+      var l=h("label","row"),c=h("input");c.type="checkbox";c.checked=!!it.v;
       c.addEventListener("change",function(){it.v=c.checked;state[xk]=list;save()});
-      var sp=document.createElement("span");sp.className="t";sp.textContent=it.t;
-      var r=document.createElement("button");r.type="button";r.className="rm";r.textContent="\u00d7";r.setAttribute("aria-label","Verwijderen");
+      var sp=h("span","rt");sp.appendChild(h("span","t",it.t));
+      var r=h("button","rm","×");r.type="button";r.setAttribute("aria-label","Verwijderen");
       r.addEventListener("click",function(e){e.preventDefault();list.splice(j,1);state[xk]=list;save();drawX()});
       l.appendChild(c);l.appendChild(sp);l.appendChild(r);xl.appendChild(l);
     });
   }
-  xb.addEventListener("click",function(){var v=xi.value.trim();if(!v)return;list.push({t:v,v:false});state[xk]=list;xi.value="";save();drawX()});
-  xr.appendChild(xi);xr.appendChild(xb);xs.appendChild(xr);drawX();s.appendChild(xs);
-  var lg=document.createElement("div");lg.className="log";
-  var lh=document.createElement("h3");lh.textContent="Vandaag gemeten";lg.appendChild(lh);
-  var gr=document.createElement("div");gr.className="grid";
-  [["st","Stappen","aantal"],["hk","Hardlopen","km"],["hm","Hardlooptijd","min"],["kc","Calorieën","kcal"],["ei","Eiwit","gram"]].forEach(function(f){
-    var w=document.createElement("label");w.className="f";
-    var tx=document.createElement("span");tx.textContent=f[1]+" ("+f[2]+")";
-    var inp=document.createElement("input");inp.type="number";inp.inputMode="decimal";inp.min="0";inp.step="any";
-    var fid="g"+i+f[0];inp.value=state[fid]||"";
-    inp.addEventListener("input",function(){state[fid]=inp.value;save()});
-    if(f[0]==="st")inp.addEventListener("change",function(){
-      var v=parseFloat(inp.value);
-      if(inChal(sel)&&v>=8000&&!state["c"+i+"st"]){state["c"+i+"st"]=true;save();drawDay()}
-    });
-    w.appendChild(tx);w.appendChild(inp);gr.appendChild(w);
+  drawX();
+  var ab=h("button","addb");ab.type="button";ab.innerHTML=SVG_PLUS;ab.appendChild(document.createTextNode(" Extra activiteit toevoegen"));
+  var ar=h("div","addrow");ar.hidden=true;
+  var xi=h("input");xi.type="text";xi.placeholder="Bijv. hardlopen 5 km";xi.setAttribute("aria-label","Extra activiteit");
+  var xb=h("button","pri","Toevoegen");xb.type="button";
+  function addX(){var v=xi.value.trim();if(!v)return;list.push({t:v,v:false});state[xk]=list;xi.value="";save();drawX()}
+  xb.addEventListener("click",addX);
+  xi.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addX()}});
+  ab.addEventListener("click",function(){ar.hidden=false;ab.hidden=true;xi.focus()});
+  ar.appendChild(xi);ar.appendChild(xb);pc.appendChild(ab);pc.appendChild(ar);box.appendChild(pc);
+
+  var gc=card("Gemeten",inChal(sel)?"vinkt de challenge vanzelf aan":null),gr=h("div","fields");
+  [["st","Stappen","stappen"],["hk","Hardlopen","km"],["hm","Hardlooptijd","min"],["kc","Calorieën","kcal"],["ei","Eiwit","gram"],["wa","Water","liter"]].forEach(function(f){
+    var w=h("label","fld"),bx=h("span","fbox"),inp=h("input"),fid="g"+i+f[0];
+    w.appendChild(h("span",null,f[1]));
+    inp.type="number";inp.inputMode="decimal";inp.min="0";inp.step="any";inp.placeholder="–";inp.value=state[fid]||"";
+    inp.addEventListener("input",function(){state[fid]=inp.value;autoChal(i,f[0],inp.value);save()});
+    bx.appendChild(inp);bx.appendChild(h("span","fu",f[2]));w.appendChild(bx);gr.appendChild(w);
   });
-  lg.appendChild(gr);s.appendChild(lg);
+  gc.appendChild(gr);box.appendChild(gc);
+
   if(inChal(sel)){
-    var cb=document.createElement("div");cb.className="chl";
-    var ch3=document.createElement("h3");cb.appendChild(ch3);
-    var upd=function(){var n=0;CHD.forEach(function(c){if(state["c"+i+c[0]])n++});ch3.textContent="November challenge: "+n+" van "+CHD.length+" dagelijkse doelen"};
-    var chRow=function(key,title,hint){
-      var id="c"+i+key,l=document.createElement("label"),c=document.createElement("input");
-      c.type="checkbox";c.checked=!!state[id];
-      c.addEventListener("change",function(){state[id]=c.checked;upd();save()});
-      var sp=document.createElement("span"),t=document.createElement("span");
-      t.className="t";t.textContent=title;sp.appendChild(t);
-      if(hint){var hh=document.createElement("span");hh.className="hint";hh.textContent=hint;sp.appendChild(hh)}
-      l.appendChild(c);l.appendChild(sp);return l;
-    };
-    CHD.forEach(function(c){
-      var hint=c[2];
-      if(c[0]==="ei")hint=Math.round(WEIGHT*1.8)+" tot "+Math.round(WEIGHT*2.2)+" gram (1,8 tot 2,2 g per kg)";
-      if(c[0]==="wa")hint=(Math.round(WEIGHT*35/100)/10).toString().replace(".",",")+" liter (35 ml per kg)";
-      cb.appendChild(chRow(c[0],c[1],hint));
-    });
-    cb.appendChild(chRow("kr","Krachttraining gedaan","3 tot 5 keer per week"));
-    cb.appendChild(chRow("gs","Geen ongezond snackmoment gehad","Volgens de challenge mag 1 tot 2 keer per week"));
-    upd();s.appendChild(cb);
+    var cc=card("November challenge","");cc._r.id="chc";cc._r.classList.add("good");
+    var cg=h("div","cgrid");cg.id="chg";cc.appendChild(cg);
+    var cw=h("p","small");cw.id="chw";cc.appendChild(cw);box.appendChild(cc);
   }
-  var m=document.createElement("div");m.className="meds";
-  var mh=document.createElement("h3");mh.textContent="Medicatie en supplementen";m.appendChild(mh);
-  m.appendChild(medRow(i,"oe","Oestrogeen gel",true));
-  m.appendChild(medRow(i,"pr","Progesteron voor het slapen",false));
-  var ch=document.createElement("div");ch.className="chips";
+
+  var mc=card("Medicatie en supplementen",null);
+  mc.appendChild(medRow(i,"oe","Oestrogeen gel",true));
+  mc.appendChild(medRow(i,"pr","Progesteron voor het slapen",false));
+  var chs=h("div","chips");
   SUPPS.forEach(function(n,k){
-    var sid="m"+i+"s"+k,b=document.createElement("button");
-    b.type="button";b.className="chip";b.textContent=n;
+    var sid="m"+i+"s"+k,b=h("button","chip",n);b.type="button";
     b.setAttribute("aria-pressed",state[sid]?"true":"false");
     b.addEventListener("click",function(){state[sid]=!state[sid];b.setAttribute("aria-pressed",state[sid]?"true":"false");save()});
-    ch.appendChild(b);
+    chs.appendChild(b);
   });
-  m.appendChild(ch);s.appendChild(m);
-  var nt=document.createElement("div");nt.className="note";
-  var ta=document.createElement("textarea");ta.setAttribute("aria-label","Notities");
-  ta.placeholder="Hoe voel je je? Energie, slaap, klachten…";
-  ta.value=state["n"+i]||"";
+  mc.appendChild(chs);box.appendChild(mc);
+
+  var nc=h("section","card pad"),nl=h("label","nl","Hoe voel je je?"),ta=h("textarea");
+  nl.setAttribute("for","note");ta.id="note";ta.placeholder="Energie, slaap, heup, klachten…";ta.value=state["n"+i]||"";
   ta.addEventListener("input",function(){state["n"+i]=ta.value;save()});
-  nt.appendChild(ta);s.appendChild(nt);
-  box.appendChild(s);
+  nc.appendChild(nl);nc.appendChild(ta);
+  nc.appendChild(h("p","small","Tip: eiwit bij elke maaltijd (ei, yoghurt, kip, vis, peulvruchten). Pijn in je heup? Sla een dag over en houd de volgende loop korter."));
+  box.appendChild(nc);
+  var sy=h("p","sync",syncMsg);sy.id="sync";box.appendChild(sy);
+  drawStrip();drawTiles();drawChalGrid();updateCounts();
 }
+
+/* ---------- Week ---------- */
+function renderWeek(box){
+  var mon=mondayOf(sel),sun=addDays(mon,6),cache={},st=readWeek(iso(mon),cache);
+  box.appendChild(navHead("Vorige week","Volgende week",function(){pick(addDays(sel,-7))},function(){pick(addDays(sel,7))},"Week "+isoWeek(mon),short(mon)+" – "+short(sun)));
+  var rows=[],kp=0,stp=0,km=0,notes=[];
+  for(var j=0;j<7;j++){
+    var d=addDays(mon,j),x=info(d,cache);rows.push([d,x]);
+    if(x.kp)kp++;stp+=x.st;km+=x.hk;
+    var nt=st["n"+j];if(nt&&String(nt).trim())notes.push([DN[j]+" "+short(d),String(nt).trim()]);
+  }
+  var done=stats(st),k=h("div","tiles two");
+  k.appendChild(tile("Plan afgevinkt",String(done)," / "+TOTAL,done/TOTAL*100,""));
+  k.appendChild(tile("Kracht of Pilates",String(kp)," / 3–5",kp/3*100,"warm"));
+  k.appendChild(tile("Stappen totaal",Math.round(stp).toLocaleString("nl-NL")," / 56k",stp/56000*100,"warm"));
+  k.appendChild(tile("Hardlopen",nl1(km)," km",km/8*100,""));
+  box.appendChild(k);
+  var dc=h("section","card"),th=h("div","wrow whead");
+  th.appendChild(h("span",null,"Dag"));th.appendChild(h("span",null,"Plan"));th.appendChild(h("span","wc","Challenge"));
+  dc.appendChild(th);
+  rows.forEach(function(r){
+    var d=r[0],x=r[1],j=dayIdx(d),b=h("button","wrow");b.type="button";
+    if(iso(d)===iso(today))b.classList.add("tod");
+    var a=h("span","wd");a.appendChild(h("span","wn",DN[j]));a.appendChild(h("span","wdt",short(d)));b.appendChild(a);
+    var m=h("span","wp");m.appendChild(h("span","wpt",x.done+" van "+x.total+" · "+plan[j][1].map(function(t){return t[0]}).join(" · ")));
+    m.appendChild(bar(x.total?x.done/x.total*100:0,""));b.appendChild(m);
+    b.appendChild(h("span","wc"+(inChal(d)&&x.chn?" good":""),inChal(d)?x.chn+"/"+CHD.length:"–"));
+    b.addEventListener("click",function(){goToday(d)});
+    dc.appendChild(b);
+  });
+  box.appendChild(dc);
+  var n2=card("Notities deze week",null);
+  if(!notes.length)n2.appendChild(h("p","small pad2","Nog geen notities deze week."));
+  notes.forEach(function(n){var p=h("div","note2");p.appendChild(h("span","wn",n[0]));p.appendChild(h("p",null,n[1]));n2.appendChild(p)});
+  box.appendChild(n2);
+}
+
+/* ---------- Maand ---------- */
+function renderMonth(box){
+  function go(delta){var d=new Date(shown.y,shown.m+delta,1);shown={y:d.getFullYear(),m:d.getMonth()};render()}
+  box.appendChild(navHead("Vorige maand","Volgende maand",function(){go(-1)},function(){go(1)},MN[shown.m].charAt(0).toUpperCase()+MN[shown.m].slice(1)+" "+shown.y,null));
+  var first=new Date(shown.y,shown.m,1),off=(first.getDay()+6)%7,n=new Date(shown.y,shown.m+1,0).getDate(),cache={};
+  var c=h("section","card"),wd=h("div","mwd"),g=h("div","mgrid");
+  WD.forEach(function(w){wd.appendChild(h("span",null,w))});
+  for(var q=0;q<off;q++)g.appendChild(h("span"));
+  var full=0,chDays=0,km=0,kp=0,chMonth=inChal(first);
+  for(var dd=1;dd<=n;dd++)(function(d){
+    var x=info(d,cache),b=h("button","mc");b.type="button";
+    if(x.full){b.classList.add("full");full++}
+    if(x.ch)chDays++;km+=x.hk;if(x.kp)kp++;
+    if(iso(d)===iso(today))b.classList.add("tod");
+    if(iso(d)===iso(sel))b.classList.add("sel");
+    b.setAttribute("aria-label",d.getDate()+" "+MN[d.getMonth()]);
+    b.appendChild(h("span",null,String(d.getDate())));b.appendChild(dotsEl(x));
+    b.addEventListener("click",function(){goToday(d)});
+    g.appendChild(b);
+  })(new Date(shown.y,shown.m,dd));
+  c.appendChild(wd);c.appendChild(g);
+  var lg=h("div","legend");
+  [["d-run","Hardlopen"],["d-kp","Kracht of Pilates"],["d-ch","Challenge gehaald"],["d-n","Notitie"]].forEach(function(l){var s=h("span");s.appendChild(h("span","dot "+l[0]));s.appendChild(document.createTextNode(l[1]));lg.appendChild(s)});
+  c.appendChild(lg);box.appendChild(c);
+  var sc=card(MN[shown.m].charAt(0).toUpperCase()+MN[shown.m].slice(1)+" in cijfers",null),ms=h("div","mstats");
+  function stat(v,l){var s=h("div","ms");s.appendChild(h("b",null,v));s.appendChild(h("span",null,l));ms.appendChild(s)}
+  if(chMonth)stat(String(chDays),"challenge-dagen helemaal gehaald");else stat(String(full),"dagen plan helemaal af");
+  stat(nl1(km)+" km","hardgelopen");
+  stat(String(kp),"dagen kracht of Pilates");
+  sc.appendChild(ms);box.appendChild(sc);
+}
+
+/* ---------- Meer ---------- */
+function doExport(){
+  var out={};
+  for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i)||"";if(/^weekschema-\d{4}-\d\d-\d\d$/.test(k)){try{out[k]=JSON.parse(localStorage.getItem(k))}catch(e){}}}
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,1)],{type:"application/json"}));
+  a.download="weekschema-export-"+iso(today)+".json";document.body.appendChild(a);a.click();a.remove();
+}
+async function doLogout(){
+  await sb.auth.signOut();
+  uid=null;cloud=false;
+  try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i)||"";if(/^weekschema-/.test(k))localStorage.removeItem(k)}}catch(e){}
+  showLogin();
+}
+function renderMore(box){
+  var hd=h("div","hdr"),hl=h("div","hdl");hl.appendChild(h("span","kick","Weekschema"));hl.appendChild(h("h1",null,"Meer"));hd.appendChild(hl);box.appendChild(hd);
+  var c=card("Gegevens",null),bt=h("div","mbtns");
+  function btn(t,fn){var b=h("button",null,t);b.type="button";b.addEventListener("click",fn);bt.appendChild(b);return b}
+  btn("Exporteer alles",doExport);
+  btn("Importeer",function(){$("impf").click()});
+  var armed=false,rt=null,lbl="Week van "+short(mondayOf(sel))+" wissen";
+  var rb=btn(lbl,function(){
+    if(!armed){armed=true;rb.textContent="Zeker weten? Tik nogmaals";rt=setTimeout(function(){armed=false;rb.textContent=lbl},4000);return}
+    clearTimeout(rt);armed=false;rb.textContent=lbl;state={};save();setSync("De week van "+short(mondayOf(sel))+" is gewist.");
+  });
+  rb.classList.add("warn");
+  btn("Uitloggen",doLogout);
+  c.appendChild(bt);box.appendChild(c);
+  var p=h("p","small pad3","Alles wat je invult wordt eerst op dit toestel bewaard en daarna op je account, zodat je telefoon en laptop gelijk blijven.");box.appendChild(p);
+  var sy=h("p","sync",syncMsg);sy.id="sync";box.appendChild(sy);
+}
+
+/* ---------- Algemeen ---------- */
+function render(){
+  var box=$("view");if(!box)return;box.textContent="";
+  if(view==="week")renderWeek(box);else if(view==="month")renderMonth(box);else if(view==="more")renderMore(box);else renderToday(box);
+  [].forEach.call($("tabs").children,function(b){
+    var on=b.getAttribute("data-v")===view;b.classList.toggle("on",on);
+    if(on)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");
+  });
+}
+function refresh(){if(view==="today"){drawStrip();drawTiles();updateCounts()}}
+function setView(v){view=v;if(v==="month")shown={y:sel.getFullYear(),m:sel.getMonth()};render();window.scrollTo(0,0)}
 function pick(d){
   var oldWk=wkIso;sel=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+  shown={y:sel.getFullYear(),m:sel.getMonth()};
   if(iso(mondayOf(sel))!==oldWk)load();
-  drawDay();refresh();
+  render();
 }
-function goMonth(delta){
-  var d=new Date(shown.y,shown.m+delta,1);shown={y:d.getFullYear(),m:d.getMonth()};
-  var isCur=shown.y===today.getFullYear()&&shown.m===today.getMonth();
-  pick(isCur?new Date(today.getTime()):new Date(shown.y,shown.m,1));
-}
-$("prev").addEventListener("click",function(){goMonth(-1)});
-$("next").addEventListener("click",function(){goMonth(1)});
-$("today").addEventListener("click",function(){shown={y:today.getFullYear(),m:today.getMonth()};pick(new Date(today.getTime()))});
-$("g").addEventListener("click",function(e){
-  var b=e.target.closest("button[data-d]");if(!b)return;
-  pick(new Date(shown.y,shown.m,+b.getAttribute("data-d")));
-});
-var armed=false,rt=null;
-$("reset").addEventListener("click",function(){
-  var b=this;
-  if(!armed){armed=true;b.textContent="Zeker weten? Tik nogmaals";rt=setTimeout(function(){armed=false;b.textContent="Deze week wissen"},4000);return}
-  clearTimeout(rt);armed=false;b.textContent="Deze week wissen";
-  state={};save();drawDay();
-});
+$("tabs").addEventListener("click",function(e){var b=e.target.closest("button[data-v]");if(b)setView(b.getAttribute("data-v"))});
 var syncing=false;
 async function syncAll(){
   if(!sb||!uid||syncing)return;
   syncing=true;
-  var sy=$("sync");
   try{
     var r=await sb.from("weekschema_weeks").select("week,payload");
     if(r.error)throw r.error;
@@ -429,14 +625,13 @@ async function syncAll(){
       if(mm&&!seen[mm[1]]){try{jobs.push(push(k,JSON.parse(localStorage.getItem(k)||"{}")))}catch(e){}}
     }
     await Promise.all(jobs);
-    sy.textContent="Bewaard op je account.";
-    if(changed){load();drawDay()}
-    refresh();
-  }catch(e){sy.textContent="Even geen verbinding met je account; bewaard op dit toestel."}
+    setSync("Bewaard op je account.");
+    if(changed){load();render()}else refresh();
+  }catch(e){setSync("Even geen verbinding met je account; bewaard op dit toestel.")}
   syncing=false;
 }
-function showApp(){$("login").hidden=true;$("app").hidden=false;load();drawDay();refresh()}
-function showLogin(){$("app").hidden=true;$("login").hidden=false}
+function showApp(){$("login").hidden=true;$("app").hidden=false;$("tabs").hidden=false;load();render()}
+function showLogin(){$("app").hidden=true;$("tabs").hidden=true;$("login").hidden=false}
 function enter(ses){
   if(!ses||!ses.user)return;
   if(uid===ses.user.id)return;
@@ -451,6 +646,7 @@ function errNl(e){
   if(/not confirmed/i.test(m))return "Je e-mailadres is nog niet bevestigd. Klik eerst op de link in de bevestigingsmail.";
   if(/already registered/i.test(m))return "Er bestaat al een account met dit e-mailadres. Log in, of kies ‘Wachtwoord vergeten?’.";
   if(/at least|password should/i.test(m))return "Kies een wachtwoord van minstens 6 tekens.";
+  if(/signups? not allowed|signup is disabled/i.test(m))return "Nieuwe accounts aanmaken staat uit.";
   if(/rate limit|too many/i.test(m))return "Te veel pogingen. Probeer het over een paar minuten opnieuw.";
   return "Dat lukte niet: "+m;
 }
@@ -491,20 +687,6 @@ $("rf").addEventListener("submit",async function(e){
   recovering=false;$("rf").hidden=true;$("lf").hidden=false;$("lx").hidden=false;$("lp").textContent="Log in met je e-mailadres en wachtwoord.";msg("");
   var s=(await sb.auth.getSession()).data.session;if(s)enter(s);
 });
-$("out").addEventListener("click",async function(){
-  await sb.auth.signOut();
-  uid=null;cloud=false;
-  try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i)||"";if(/^weekschema-/.test(k))localStorage.removeItem(k)}}catch(e){}
-  showLogin();
-});
-$("exp").addEventListener("click",function(){
-  var out={};
-  for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i)||"";if(/^weekschema-\d{4}-\d\d-\d\d$/.test(k)){try{out[k]=JSON.parse(localStorage.getItem(k))}catch(e){}}}
-  var a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,1)],{type:"application/json"}));
-  a.download="weekschema-export-"+iso(today)+".json";document.body.appendChild(a);a.click();a.remove();
-});
-$("imp").addEventListener("click",function(){$("impf").click()});
 function importData(obj){
   var n=0;
   function asObj(v){if(typeof v==="string"){try{v=JSON.parse(v)}catch(e){return null}}return (v&&typeof v==="object"&&!Array.isArray(v))?v:null}
@@ -535,13 +717,13 @@ $("impf").addEventListener("change",function(){
   var rd=new FileReader();
   rd.onload=function(){
     var n=0;try{n=importData(JSON.parse(rd.result))}catch(e){}
-    $("sync").textContent=n?n+(n===1?" week":" weken")+" geïmporteerd.":"In dit bestand vond ik geen weekgegevens.";
-    load();drawDay();refresh();
+    load();render();
+    setSync(n?n+(n===1?" week":" weken")+" geïmporteerd.":"In dit bestand vond ik geen weekgegevens.");
   };
   rd.readAsText(f);$("impf").value="";
 });
 (async function start(){
-  if(!sb){showApp();$("sync").textContent="Bewaard op dit toestel.";return}
+  if(!sb){showApp();setSync("Bewaard op dit toestel.");return}
   recovering=/type=recovery/.test(location.hash);
   sb.auth.onAuthStateChange(function(ev,ses){
     if(ev==="PASSWORD_RECOVERY"){recovering=true;setTimeout(showReset,0);return}
