@@ -470,6 +470,7 @@ $("su").addEventListener("click",async function(){
   var r=await sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:BACK}});
   if(r.error){msg(errNl(r.error));return}
   if(r.data.session){msg("");enter(r.data.session);return}
+  if(r.data.user&&Array.isArray(r.data.user.identities)&&r.data.user.identities.length===0){msg("Er bestaat al een account met dit e-mailadres. Tik op ‘Wachtwoord vergeten?’ om een wachtwoord in te stellen.");return}
   msg("Gelukt! Je krijgt een mail om je e-mailadres te bevestigen. Klik op de link en log daarna hier in met je wachtwoord.");
 });
 $("fg").addEventListener("click",async function(){
