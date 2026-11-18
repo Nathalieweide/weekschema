@@ -89,6 +89,7 @@ select{margin-left:auto;font:inherit;background:var(--card);color:var(--ink);bor
 .auth button,.pri{width:100%;background:var(--acc);border-color:var(--acc);color:var(--card);font-weight:700}
 .auth .msg{margin:12px 0 0;color:var(--ink)}
 .auth .sub{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.auth #lx button{width:auto;flex:1;background:none;border-color:var(--line);color:var(--mute);font-weight:500}
 .data{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 [hidden]{display:none!important}
 </style>
@@ -98,17 +99,21 @@ select{margin-left:auto;font:inherit;background:var(--card);color:var(--ink);bor
 <section id="login" class="auth" hidden>
 <div class="card">
 <h1>Weekschema</h1>
-<p>Log in met je e-mailadres. Je krijgt een mail met een inloglink.</p>
+<p id="lp">Log in met je e-mailadres en wachtwoord.</p>
 <form id="lf">
-<input id="em" type="email" autocomplete="email" placeholder="jouw@e-mailadres.nl" required aria-label="E-mailadres">
-<button type="submit" id="lb">Stuur inloglink</button>
+<input id="em" type="email" autocomplete="username" placeholder="jouw@e-mailadres.nl" required aria-label="E-mailadres">
+<input id="pw" type="password" autocomplete="current-password" placeholder="Wachtwoord" required minlength="6" aria-label="Wachtwoord">
+<button type="submit" id="lb">Inloggen</button>
+</form>
+<form id="rf" hidden>
+<input id="npw" type="password" autocomplete="new-password" placeholder="Nieuw wachtwoord (minstens 6 tekens)" minlength="6" required aria-label="Nieuw wachtwoord">
+<button type="submit">Wachtwoord opslaan</button>
 </form>
 <p class="msg" id="lm" hidden></p>
-<form id="cf" class="sub" hidden>
-<p>Staat er een code in de mail? Vul die hier in.</p>
-<input id="cd" type="text" inputmode="numeric" autocomplete="one-time-code" placeholder="Code uit de mail" aria-label="Code">
-<button type="submit">Inloggen met code</button>
-</form>
+<div class="sub data" id="lx">
+<button type="button" id="su">Account aanmaken</button>
+<button type="button" id="fg">Wachtwoord vergeten?</button>
+</div>
 </div>
 </section>
 <main id="app" hidden>
@@ -438,22 +443,52 @@ function enter(ses){
   uid=ses.user.id;showApp();syncAll();
 }
 document.addEventListener("visibilitychange",function(){if(!document.hidden)syncAll()});
+var BACK=location.origin+location.pathname,recovering=false;
+function msg(t){var lm=$("lm");lm.hidden=!t;lm.textContent=t||""}
+function errNl(e){
+  var m=(e&&e.message)||"";
+  if(/invalid login/i.test(m))return "E-mailadres of wachtwoord klopt niet.";
+  if(/not confirmed/i.test(m))return "Je e-mailadres is nog niet bevestigd. Klik eerst op de link in de bevestigingsmail.";
+  if(/already registered/i.test(m))return "Er bestaat al een account met dit e-mailadres. Log in, of kies ‘Wachtwoord vergeten?’.";
+  if(/at least|password should/i.test(m))return "Kies een wachtwoord van minstens 6 tekens.";
+  if(/rate limit|too many/i.test(m))return "Te veel pogingen. Probeer het over een paar minuten opnieuw.";
+  return "Dat lukte niet: "+m;
+}
 $("lf").addEventListener("submit",async function(e){
   e.preventDefault();
-  var em=$("em").value.trim(),lm=$("lm"),lb=$("lb");if(!em)return;
-  lb.disabled=true;lm.hidden=false;lm.textContent="Bezig met versturen…";
-  var r=await sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:location.origin+location.pathname}});
+  var em=$("em").value.trim(),pw=$("pw").value,lb=$("lb");if(!em||!pw)return;
+  lb.disabled=true;msg("Bezig met inloggen…");
+  var r=await sb.auth.signInWithPassword({email:em,password:pw});
   lb.disabled=false;
-  if(r.error){lm.textContent="Versturen lukte niet: "+r.error.message;return}
-  lm.textContent="Check je mail en tik op de link. Gebruik je de app vanaf je beginscherm, vul dan de code uit de mail hieronder in.";
-  $("cf").hidden=false;
+  if(r.error){msg(errNl(r.error));return}
+  msg("");enter(r.data.session);
 });
-$("cf").addEventListener("submit",async function(e){
+$("su").addEventListener("click",async function(){
+  var em=$("em").value.trim(),pw=$("pw").value;
+  if(!em||pw.length<6){msg("Vul je e-mailadres en een wachtwoord van minstens 6 tekens in, en tik dan op ‘Account aanmaken’.");return}
+  msg("Account wordt aangemaakt…");
+  var r=await sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:BACK}});
+  if(r.error){msg(errNl(r.error));return}
+  if(r.data.session){msg("");enter(r.data.session);return}
+  msg("Gelukt! Je krijgt een mail om je e-mailadres te bevestigen. Klik op de link en log daarna hier in met je wachtwoord.");
+});
+$("fg").addEventListener("click",async function(){
+  var em=$("em").value.trim();
+  if(!em){msg("Vul eerst je e-mailadres in en tik dan opnieuw op ‘Wachtwoord vergeten?’.");return}
+  var r=await sb.auth.resetPasswordForEmail(em,{redirectTo:BACK});
+  if(r.error){msg(errNl(r.error));return}
+  msg("Je krijgt een mail met een link om een nieuw wachtwoord in te stellen.");
+});
+function showReset(){
+  showLogin();$("lf").hidden=true;$("lx").hidden=true;$("rf").hidden=false;
+  $("lp").textContent="Kies een nieuw wachtwoord.";msg("");
+}
+$("rf").addEventListener("submit",async function(e){
   e.preventDefault();
-  var tk=$("cd").value.trim(),lm=$("lm");if(!tk)return;
-  var r=await sb.auth.verifyOtp({email:$("em").value.trim(),token:tk,type:"email"});
-  if(r.error){lm.textContent="Die code klopt niet of is verlopen. Vraag een nieuwe aan.";return}
-  enter(r.data.session);
+  var r=await sb.auth.updateUser({password:$("npw").value});
+  if(r.error){msg(errNl(r.error));return}
+  recovering=false;$("rf").hidden=true;$("lf").hidden=false;$("lx").hidden=false;$("lp").textContent="Log in met je e-mailadres en wachtwoord.";msg("");
+  var s=(await sb.auth.getSession()).data.session;if(s)enter(s);
 });
 $("out").addEventListener("click",async function(){
   await sb.auth.signOut();
@@ -506,11 +541,15 @@ $("impf").addEventListener("change",function(){
 });
 (async function start(){
   if(!sb){showApp();$("sync").textContent="Bewaard op dit toestel.";return}
+  recovering=/type=recovery/.test(location.hash);
   sb.auth.onAuthStateChange(function(ev,ses){
+    if(ev==="PASSWORD_RECOVERY"){recovering=true;setTimeout(showReset,0);return}
+    if(recovering)return;
     if(ses)setTimeout(function(){enter(ses)},0);
     else if(ev==="SIGNED_OUT")showLogin();
   });
   var s=(await sb.auth.getSession()).data.session;
+  if(recovering){showReset();return}
   if(s)enter(s);else if(!uid)showLogin();
 })();
 </script>

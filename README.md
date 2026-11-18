@@ -8,7 +8,7 @@ Persoonlijke week- en gezondheidsplanner: een kalender, dagtaken, stappen en met
 - **Supabase-project:** `weekschema` (https://wqtvntuvpydrzvcbfxbt.supabase.co). De publishable key staat in `index.html`; dat is veilig, want de beveiliging zit in RLS.
 - **Tabel:** `public.weekschema_weeks` (`user_id`, `week` date, `payload` jsonb, `updated_at`), met één rij per gebruiker per week. Zie `supabase-setup.sql`.
 - **Synchronisatie:** elke week-payload heeft een `_t`-tijdstempel. De nieuwste versie wint, of die nu lokaal staat of in de cloud. Er wordt gesynchroniseerd bij het inloggen en telkens als de app weer in beeld komt.
-- **Inloggen:** e-maillink via Supabase Auth (`signInWithOtp`), plus een invulveld voor de code uit de mail, voor gebruik vanaf het beginscherm.
+- **Inloggen:** e-mail en wachtwoord via Supabase Auth (`signInWithPassword`, `signUp`), met 'Wachtwoord vergeten?' (`resetPasswordForEmail`; de herstellink opent een formulier voor een nieuw wachtwoord). Werkt ook vanaf het iPhone-beginscherm.
 
 ## Keys in de payload (per week, dagindex i = 0 voor maandag t/m 6 voor zondag)
 - `i-j`: taak j van dag i afgevinkt; `di-j`: aangepaste omschrijving van die taak
